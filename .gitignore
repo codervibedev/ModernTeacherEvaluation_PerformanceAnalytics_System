@@ -218,3 +218,14 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+   # Secrets
+   .env.*
+   !.env.example
+
+   # Database backups
+   *.sql
+   !database/schema.sql
+
+   # Node
+   node_modules/
