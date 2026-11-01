@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, jsonify
 from flask_cors import CORS
 
@@ -12,7 +14,9 @@ def create_app():
     db.init_app(app)
     login_manager.init_app(app)
     login_manager.session_protection = "strong"
-    CORS(app, supports_credentials=True, origins=["http://localhost:5173"])
+
+    origins = os.environ.get("CORS_ORIGINS", "http://localhost:5173").split(",")
+    CORS(app, supports_credentials=True, origins=origins)
 
     from models import Admin  # na-i-import din dito ang lahat ng tables
     from student_routes import student_bp
